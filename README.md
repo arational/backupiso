@@ -68,8 +68,9 @@ sudo ./build.sh -v
 
 ## Testing
 
-You can test the iso with a virtual machine like qemu. You can use the small
-disk-image of 10 Megabyte size to test the backup and restore functions on.
+You can test the iso with a virtual machine like `qemu`. You can use the small
+disk-image `test_image.raw` of 10 Megabyte size to test the backup and restore
+functions on.
 
 ``` shell
 qemu-system-x86_64 -m 1024 -cdrom archlive/out/archlinux-*.iso -drive file=test_image.raw,format=raw -boot order=d
