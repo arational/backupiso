@@ -1,10 +1,18 @@
 # backupiso
-Custom archiso setup with a backup script
+A custom archiso setup with a backup script containing the main logic of this
+backup solution.
+
+The key features of this backup solution is:
+- Backup and restoring of an entire block device containing a ext4 filesystem.
+- Storage of the backup on a samba share in the local network.
+- Light and fast compression of the stored backup.
+- Simple encryption of the stored backup with `scrypt`.
+- Checksum validation of the stored backup data.
 
 ## Requirements
 To create a custom "Archlinux Live-ISO" a running Archlinux environment is required.
-Additionally the package `archiso` is required to provide the build environment
-of the livecd.
+Additionally you need to install the package `archiso` to provide the build environment
+for the livecd.
 
 ## Setup
 First you need a archiso releng profile:
@@ -19,7 +27,7 @@ First copy the list of packages required to run the backup script on the running
 livecd-environment:
 
 ```shell
-cp packages.x86_64 archlive/packages.x86_64
+cp packages.x86_64 archlive
 ```
 
 Then copy the backup script with a small startup script:
@@ -28,7 +36,7 @@ Then copy the backup script with a small startup script:
 cp .welcome.sh rescue.sh archlive/airootfs/root/
 ```
 
-Now ajust the zsh startup script to run our custom small startup script:
+Now ajust the zsh startup script to run the custom small startup script:
 
 ``` shell
 echo "~/.welcome.sh" >> archlive/airootfs/root/.zlogin
@@ -42,7 +50,7 @@ tree on the livecd-environment. So this should be entirely owned by root:
 chown -R root:root archlive/airootfs
 ```
 
-Now create the `out` directory where the fresh iso file will be placed:
+Now create the `out` directory where the fresh iso file will be placed in:
 
 ``` shell
 mkdir archlive/out
