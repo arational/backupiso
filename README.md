@@ -10,25 +10,25 @@ of the livecd.
 First you need a archiso releng profile:
 
 ```shell
+mkdir archlive
 cp -r /usr/share/archiso/configs/releng/* archlive
 ```
 
-Now we will customize the profile.
-
-First we copy the package list required to run the backup script on the running
+Now customize the profile.
+First copy the list of packages required to run the backup script on the running
 livecd-environment:
 
 ```shell
 cp packages.x86_64 archlive/packages.x86_64
 ```
 
-Then we copy the backup script with a small startup script:
+Then copy the backup script with a small startup script:
 
 ``` shell
 cp .welcome.sh rescue.sh archlive/airootfs/root/
 ```
 
-Now we ajust the zsh startup script to run our custom small startup script:
+Now ajust the zsh startup script to run our custom small startup script:
 
 ``` shell
 echo "~/.welcome.sh" >> archlive/airootfs/root/.zlogin
@@ -49,8 +49,18 @@ mkdir archlive/out
 ```
 
 Now move into the `archlive` directory and run the build script.
+You must run this script with root permissions.
 
 ``` shell
 mv archlive
-./build.sh -v
+sudo ./build.sh -v
+```
+
+## Testing
+
+You can test the iso with a virtual machine like qemu. You can use the small
+disk-image of 10 Megabyte size to test the backup and restore functions on.
+
+``` shell
+qemu-system-x86_64 -m 1024 -cdrom archlive/out/archlinux-*.iso -drive file=test_image.raw,format=raw -boot order=d
 ```
