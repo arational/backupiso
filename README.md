@@ -2,15 +2,17 @@
 A custom archiso setup with a backup script containing the main logic of this
 backup solution.
 
-The key features of this backup solution is:
-- Backup and restoring of an entire block device containing a ext4 filesystem.
+The key features of this backup solution:
+- Backup and restoring of an entire block device containing an ext4 filesystem.
 - Storage of the backup on a samba share in the local network.
 - Light and fast compression of the stored backup.
 - Simple encryption of the stored backup with `scrypt`.
 - Checksum validation of the stored backup data.
 
+Feel free to fork this and make your own adjustments based on your environment.
+
 ## Requirements
-To create a custom "Archlinux Live-ISO" a running Archlinux environment is required.
+To create a custom Archlinux Live-ISO a running Archlinux environment is required.
 Additionally you need to install the package `archiso` to provide the build environment
 for the livecd.
 
