@@ -62,7 +62,7 @@ Now move into the `archlive` directory and run the build script.
 You must run this script with root permissions.
 
 ``` shell
-mv archlive
+cd archlive
 sudo ./build.sh -v
 ```
 
